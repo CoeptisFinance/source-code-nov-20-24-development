@@ -1,0 +1,36 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "18"
+  VITE_FIREBASE_API_KEY = "AIzaSyClJUgVNwzSyzUXPdbo2AF0VdRjs7_cJFU"
+  VITE_FIREBASE_AUTH_DOMAIN = "coinconnect-29bb2.firebaseapp.com"
+  VITE_FIREBASE_PROJECT_ID = "coinconnect-29bb2"
+  VITE_FIREBASE_STORAGE_BUCKET = "coinconnect-29bb2.firebasestorage.app"
+  VITE_FIREBASE_MESSAGING_SENDER_ID = "872421020404"
+  VITE_FIREBASE_APP_ID = "1:872421020404:web:a557d08e275b2b2cc144a1"
+  VITE_MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiZG9uZGFhc2lhbjIwMjQiLCJhIjoiY20zaThiNXJ5MG44MDJrcHBobG83dTBuZSJ9.oZj4kbxz_y8IbM8Pp7Li3Q"
+  URL = "https://heroic-syrniki-de45c7.netlify.app"
+  RP_NAME = "CoinConnect"
+  NETLIFY = "true"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@simplewebauthn/server"]
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "frame-ancestors 'self' https://*.google.com https://*.gstatic.com"

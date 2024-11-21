@@ -1,0 +1,36 @@
+{
+    "name": "CoinConnect",
+    "short_name": "CoinConnect",
+    "description": "Your Ride, Your Way",
+    "start_url": "/?source=pwa",
+    "id": "/?source=pwa",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#0A1929",
+    "theme_color": "#0A1929",
+    "prefer_related_applications": false,
+    "categories": ["travel", "transportation"],
+    "icons": [
+      {
+        "src": "/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "shortcuts": [
+      {
+        "name": "Book a Ride",
+        "short_name": "Ride",
+        "description": "Book a new ride",
+        "url": "/?action=ride",
+        "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+      }
+    ]
+  }

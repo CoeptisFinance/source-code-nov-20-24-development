@@ -1,0 +1,390 @@
+/* PWA container adjustments */
+#root {
+  height: 100vh;
+  height: -webkit-fill-available;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Status bar background for iOS */
+@supports (-webkit-touch-callout: none) {
+  .status-bar-fill {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: env(safe-area-inset-top);
+    background-color: #0A1929;
+    z-index: 50;
+  }
+}
+
+/* Adjust PhoneAuth component for PWA */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: env(safe-area-inset-top);
+  height: 100%;
+}
+
+/* Bottom banner adjustments for mobile browser */
+.bottom-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(19, 47, 76, 0.95);
+  border-top: 1px solid rgba(38, 93, 151, 0.6);
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding: 0.75rem;
+  z-index: 10;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+/* Base styles (Safari) */
+.service-nav {
+  background-color: #001E3C;
+  border-top: 1px solid #132F4C;
+  height: 56px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+}
+
+.service-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 56px;
+}
+
+/* Bottom sheet base styles (Safari) */
+.bottom-sheet {
+  position: fixed;
+  bottom: 120px;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background-color: #001E3C;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  margin-bottom: env(safe-area-inset-bottom);
+}
+
+/* Price estimator container for Safari */
+.price-estimator-container {
+  padding: 1rem;
+  padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+}
+
+/* PWA-specific styles */
+@media (display-mode: standalone) {
+  /* Reset root padding */
+  #root {
+    padding-bottom: 0;
+  }
+
+  /* Adjust nav container for PWA */
+  .service-nav-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: #001E3C;
+    height: 56px;
+    transform: translateY(-20px);
+    padding-bottom: 20px;
+  }
+
+  /* Add a background extension for the bottom area */
+  .service-nav-container::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-color: #001E3C; /* Match nav bar color */
+    z-index: 49;
+  }
+
+  /* Keep other styles */
+  .fixed.inset-x-0.bottom-0 {
+    bottom: 36px !important;
+  }
+
+  /* Remove margin from bottom sheet content */
+  .bg-[#001E3C].rounded-t-2xl {
+    margin-bottom: 0 !important;
+  }
+
+  /* Remove any additional spacing */
+  .service-nav {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .bottom-sheet {
+    position: fixed;
+    bottom: 36px !important;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    background-color: #001E3C;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 0;
+  }
+
+  /* Adjust map container */
+  .w-full.h-full.relative {
+    height: calc(100% - 36px) !important; /* Adjust map height to stop above nav */
+  }
+
+  /* Adjust icon and text sizes */
+  .service-nav-container svg {
+    width: 20px; /* Reduce from default size */
+    height: 20px;
+  }
+
+  .service-nav-container span {
+    font-size: 12px; /* Adjust text size */
+    margin-top: 4px; /* Add some spacing between icon and text */
+  }
+
+  /* Optional: adjust the container spacing */
+  .service-selector {
+    padding: 0 16px;
+  }
+
+  /* Reset padding for PWA */
+  .price-estimator-container {
+    padding: 1rem;
+  }
+
+  .bottom-banner {
+    display: none;
+  }
+
+  /* Adjust route info pill position for PWA */
+  .route-info-pill {
+    top: 120px !important; /* Override the default top position */
+  }
+}
+
+/* Safari-specific styles */
+@supports not (display-mode: standalone) {
+  .service-nav {
+    height: 56px;
+    background-color: #001E3C;
+    border-top: 1px solid #132F4C;
+  }
+}
+
+/* Base styles (Safari) */
+.service-selector {
+  height: 3.5rem; /* h-14 */
+}
+
+/* PWA-specific styles */
+@media (display-mode: standalone) {
+  .service-selector {
+    height: 3rem; /* h-12 */
+  }
+}
+
+/* Adjust bottom sheet for PWA */
+@media (display-mode: standalone) {
+  .fixed.inset-x-0.bottom-0 {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    margin-bottom: calc(56px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Base styles (Mobile Browser) */
+.restaurant-search {
+  top: 0;
+  position: sticky;
+  padding: 1rem;
+  background-color: #0A1929;
+  border-bottom: 1px solid #132F4C;
+  z-index: 10;
+}
+
+/* PWA-specific styles */
+@media (display-mode: standalone) {
+  .restaurant-search {
+    top: env(safe-area-inset-top);
+    padding-top: calc(1rem + env(safe-area-inset-top));
+  }
+  
+  /* Adjust the restaurant list container height */
+  .restaurant-list-container {
+    height: calc(100vh - 120px - env(safe-area-inset-top));
+  }
+}
+
+/* Mobile Browser Styles (non-PWA) */
+@media not all and (display-mode: standalone) {
+  .auth-container {
+    margin-bottom: 140px;
+    padding-top: 0;
+  }
+
+  /* Auth modal */
+  .auth-modal {
+    height: auto;
+    padding: 1.5rem 1.5rem 4rem !important;
+    margin: 0 1rem;
+    background: rgba(0, 30, 60, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(38, 93, 151, 0.6);
+    border-radius: 1rem;
+    position: relative;
+  }
+
+  /* Form elements */
+  .auth-form {
+    width: 100%;
+  }
+
+  /* OTP input container */
+  .otp-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* OTP input boxes */
+  .otp-input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 0.375rem;
+    background: rgba(19, 47, 76, 0.4);
+    border: 1px solid rgba(38, 93, 151, 0.6);
+  }
+
+  /* Install banner */
+  .bottom-banner {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 1rem;
+    right: 1rem;
+    background: rgba(19, 47, 76, 0.95);
+    border: 1px solid rgba(38, 93, 151, 0.6);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    z-index: 10;
+  }
+}
+
+/* Keep existing PWA styles */
+@media (display-mode: standalone) {
+  /* ... existing PWA styles ... */
+}
+
+/* Modal styles */
+.fixed.inset-0 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  touch-action: none;
+}
+
+/* Ensure modals are above everything */
+.z-[9999] {
+  z-index: 9999;
+}
+
+/* Add margin to modal content */
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/* Modal adjustments */
+.auth-modal {
+  margin-top: auto;
+  margin-bottom: auto;
+  max-height: calc(100vh - 200px);
+}
+
+/* Add this to your existing styles */
+:root.modal-open {
+  pointer-events: none;
+}
+
+:root.modal-open > * {
+  filter: blur(8px);
+  transition: filter 0.3s ease-out;
+}
+
+:root.modal-open .fixed {
+  filter: none;
+  pointer-events: auto;
+}
+
+/* Ensure modal content isn't blurred */
+.modal-content {
+  filter: none !important;
+}
+
+/* Remove any previous modal-related styles and add these */
+@keyframes modal-popup {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.backdrop-blur-xl {
+  backdrop-filter: blur(20px);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+} 
